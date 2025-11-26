@@ -33,15 +33,15 @@ def build_query_filter(portal, augment, composition):
     conditions = []
     params = []
 
-    if portal and portal != "Todos":
+    if portal and portal != "All":
         conditions.append("portal = ?")
         params.append(portal)
 
-    if composition and composition != "Todos":
+    if composition and composition != "All":
         conditions.append("composition = ?")
         params.append(composition)
 
-    if augment and augment != "Todos":
+    if augment and augment != "All":
         conditions.append("(augment1 = ? OR augment2 = ? OR augment3 = ?)")
         params.extend([augment, augment, augment])
 
@@ -61,18 +61,26 @@ def index():
 
     filtered = df.copy()
 
-    if portal and portal != "Todos":
+    if portal and portal != "All":
         filtered = filtered[filtered["portal"] == portal]
 
-    if augment and augment != "Todos":
+    if augment and augment != "All":
         filtered = filtered[
             (filtered["augment1"] == augment) |
             (filtered["augment2"] == augment) |
             (filtered["augment3"] == augment)
         ]
 
-    if patch and patch != "Todos":
+    if patch and patch != "All":
         filtered = filtered[filtered["patch"] == patch]
+
+    # ---- Resumo geral ----
+    total_games = len(filtered)
+
+    if total_games > 0:
+        overall_avg = filtered["placement"].mean()
+    else:
+        overall_avg = 0
 
     # ---- Estatística por composição ----
     tmp = filtered.groupby("composition").agg(
@@ -86,7 +94,7 @@ def index():
     ]
 
     # ---- Valores para selects ----
-    portals = ["Todos"] + sorted(df["portal"].dropna().unique().tolist())
+    portals = ["All"] + sorted(df["portal"].dropna().unique().tolist())
 
     # cria lista única de augments
     augments = sorted(
@@ -94,9 +102,9 @@ def index():
         set(df["augment2"].dropna()) |
         set(df["augment3"].dropna())
     )
-    augments = ["Todos"] + augments
+    augments = ["All"] + augments
 
-    patches = ["Todos"] + sorted(df["patch"].dropna().unique().tolist())
+    patches = ["All"] + sorted(df["patch"].dropna().unique().tolist())
 
     return render_template(
         "index.html",
@@ -104,9 +112,11 @@ def index():
         portals=portals,
         augments=augments,
         patches=patches,
-        selected_portal=portal or "Todos",
-        selected_augment=augment or "Todos",
-        selected_patch=patch or "Todos"
+        selected_portal=portal or "All",
+        selected_augment=augment or "All",
+        selected_patch=patch or "All",
+        total_games=total_games,
+        overall_avg=overall_avg
     )
 
 

@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<h1>📊 TFT – Estatísticas Pessoais</h1>
+<h1>📊 TFT – Personal Data Tracker</h1>
 
 <form method="get" class="filters">
 
@@ -44,9 +44,21 @@
         {% endfor %}
     </select>
 
-    <button type="submit">Filtrar</button>
+    <button type="submit">Filter</button>
 </form>
 
+<div style="
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 300px;
+    background: #fafafa;
+">
+    <h3 style="margin-top: 0;">General Stats</h3>
+    <p><strong>Total Games:</strong> {{ total_games }}</p>
+    <p><strong>Overall Average Placement:</strong> {{ "%.2f"|format(overall_avg) }}</p>
+</div>
 
 <table>
     <thead>
