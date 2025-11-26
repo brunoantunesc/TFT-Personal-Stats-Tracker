@@ -5,7 +5,15 @@ Simple tracker to record your TFT matches and view a dashboard (Flask) with aver
 > Repo URL: https://github.com/brunoantunesc/TFT-Personal-Stats-Tracker.git
 
 ## Requirements
-- Python 3.14.  
+- Python 3.14.
+
+## Features
+
+This is a personal TFT stats tracker, built with the idea to log my own games (portal, augments, compositions) to keep record of every game made through the season. The intent behind it is to find weakness/strenghts in game plan and augment choice and learn how and where to search for improvement.
+
+For now, the act of logging a game is made manually through a terminal. Future plans include adding a method of uploading your game through screenshots (one for the augments, one for the final game position), table search and deploying it online (letting users create an account to save their data).
+
+This is not intended to handle large volumes of data and is also not intended as a bootleg global augments stat tracker.
 
 ## Quick start
 
