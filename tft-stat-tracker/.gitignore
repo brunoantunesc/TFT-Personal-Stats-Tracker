@@ -1,0 +1,47 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+
+# --- SQLite database ---
+tft.db
+*.sqlite3
+
+# --- Virtual environments ---
+venv/
+.env/
+.venv/
+
+# --- Flask ---
+instance/
+*.log
+
+# --- Pytest ---
+.cache/
+.pytest_cache/
+
+# --- VSCode / IDE ---
+.vscode/
+.idea/
+
+# --- OS-specific ---
+.DS_Store
+Thumbs.db
+
+# --- Environment files ---
+*.env
+.env.*
+!.env.example
+
+# --- Build / Distribution ---
+build/
+dist/
+*.egg-info/
+*.egg
+
+# --- Docker ---
+*.tar
+docker-output/

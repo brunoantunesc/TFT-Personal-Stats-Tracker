@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TFT Tracker Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        h1 { margin-bottom: 10px; }
+        form { margin-bottom: 25px; }
+        select { padding: 5px; margin-right: 15px; }
+        table { border-collapse: collapse; width: 60%; margin-top: 15px; }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th { background: #eee; }
+    </style>
+</head>
+<body>
+
+<h1>📊 TFT – Estatísticas Pessoais</h1>
+
+<form method="get" class="filters">
+
+    <label>Portal:</label>
+    <select name="portal">
+        {% for p in portals %}
+            <option value="{{ p }}" {% if p == selected_portal %}selected{% endif %}>{{ p }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Augment:</label>
+    <select name="augment">
+        {% for a in augments %}
+            <option value="{{ a }}" {% if a == selected_augment %}selected{% endif %}>{{ a }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Patch:</label>
+    <select name="patch">
+        {% for x in patches %}
+            <option value="{{ x }}" {% if x == selected_patch %}selected{% endif %}>{{ x }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Filtrar</button>
+</form>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Composição</th>
+            <th>Colocação Média</th>
+            <th>Partidas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comp, avg, plays in stats %}
+        <tr>
+            <td>{{ comp }}</td>
+            <td>{{ "%.2f"|format(avg) }}</td>
+            <td>{{ plays }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<footer style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    color: #555;
+    font-size: 14px;
+">
+    Made by:
+    <a href="https://github.com/brunoantunesc" target="_blank">https://github.com/brunoantunesc</a>
+    &nbsp;||&nbsp;
+    TFTLightning (Lightning#1807)
+</footer>
+</body>
+</html>
