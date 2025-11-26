@@ -11,7 +11,9 @@ Simple tracker to record your TFT matches and view a dashboard (Flask) with aver
 
 This is a personal TFT stats tracker, built with the idea to log my own games (portal, augments, compositions) to keep record of every game made through the season. The intent behind it is to find weakness/strenghts in game plan and augment choice and learn how and where to search for improvement.
 
-For now, the act of logging a game is made manually through a terminal. Future plans include adding a method of uploading your game through screenshots (one for the augments, one for the final game position), table search and deploying it online (letting users create an account to save their data).
+For now, the act of logging a game is made manually through a terminal. You can log the patch in which the game was played, the game's initial portal (champion encounter), each of your 3 augments' name, final game position and composition name. All these fields can then be used to filter your stats, so you can check specifically how you fare by playing a hero augment, a general strong opener augment (like Prizefighter or Warpath) or an econ, open fort one. With these stats in mind, the goal is to mainly find gaps in knowledge or execution by being able to search for top-ranked players' games on those augments.
+
+Future plans include adding a method of uploading your game through screenshots (one for the augments, one for the final game position), table search and deploying it online (letting users create an account to save their data).
 
 This is not intended to handle large volumes of data and is also not intended as a bootleg global augments stat tracker.
 
